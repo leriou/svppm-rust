@@ -1,15 +1,12 @@
 use std::fs;
-
 use std::cmp::min;
-///
+
 /// save ppm
-///
-///
 fn svppm(name: &String, w: i32, h: i32, arr: &Vec<i32>) -> bool {
     let mut contents = format!("P3\n{} {}\n255\n", w, h);
     for (i, j) in arr.iter().enumerate() {
         if i % 3 == 0 {
-            contents.push_str(&(format!("{} {} {}\n", j, arr[i + 1], arr[i + 2])));
+            contents.push_str(format!("{} {} {}\n", j, arr[i + 1], arr[i + 2]).as_str());
         }
     }
     if let Ok(_) = fs::write(name, contents) {
